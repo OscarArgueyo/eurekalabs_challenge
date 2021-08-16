@@ -174,5 +174,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
 
-AlPHAVANTAGEAPI_API_QUERY_URL = 'https://www.alphavantage.co/query'
-AlPHAVANTAGEAPI_API_KEY = 'X86NOH6II01P7R24'
+ALPHAVANTAGEAPI_API_QUERY_URL = 'https://www.alphavantage.co/query'
+ALPHAVANTAGEAPI_API_KEY = 'X86NOH6II01P7R24'
