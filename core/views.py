@@ -28,16 +28,7 @@ class AlphaVantageServiceViewSet(viewsets.GenericViewSet,
 
     lookup_field = 'symbol'
 
-    def alpha_vantage_service_request(self , symbol, params):
-        url = 'https://www.alphavantage.co/query'
-        params = dict(params)
-        params.setdefault('apikey', 'X86NOH6II01P7R24')
-        params.setdefault('symbol', symbol)
-        r = requests.get(url, params=params)
-        data = r.json()
-        return data
-
     def retrieve(self, request, *args, **kwargs):
         results = self.alpha_vantage_service_request(symbol=kwargs.get('symbol') , params=request.GET)
-        return Response(results)
+        return Response(results.json(), results.status_code )
 

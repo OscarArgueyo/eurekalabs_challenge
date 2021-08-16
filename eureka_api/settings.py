@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-1o0%t)l1509#+e)b6hd50^oi!_@7nr-f!!te8lktw@&mqi(uwh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['eurekalabs-challenge.herokuapp.com']
+ALLOWED_HOSTS = ['eurekalabs-challenge.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -169,6 +170,9 @@ STATICFILES_DIRS = (
 #  Add configuration for static files storage using whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-import dj_database_url
+
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
+
+AlPHAVANTAGEAPI_API_QUERY_URL = 'https://www.alphavantage.co/query'
+AlPHAVANTAGEAPI_API_KEY = 'X86NOH6II01P7R24'
