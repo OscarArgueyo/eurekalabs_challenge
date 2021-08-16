@@ -4,8 +4,7 @@ from .serializer import RegisterSerializer , UserSerializer
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
-
-import requests
+from .mixins.views import AlphaVantageServiceMixinsView
 
 
 
@@ -22,13 +21,13 @@ class SignUpView(generics.GenericAPIView):
         })
 
 
-class AlphaVantageServiceViewSet(viewsets.GenericViewSet,
+class AlphaVantageServiceViewSet(AlphaVantageServiceMixinsView, viewsets.GenericViewSet,
                                  viewsets.mixins.RetrieveModelMixin):
     permission_classes = (IsAuthenticated,)
 
     lookup_field = 'symbol'
 
     def retrieve(self, request, *args, **kwargs):
-        results = self.alpha_vantage_service_request(symbol=kwargs.get('symbol') , params=request.GET)
+        results = self.process_request(symbol=kwargs.get('symbol') , params=request.GET)
         return Response(results.json(), results.status_code )
 
