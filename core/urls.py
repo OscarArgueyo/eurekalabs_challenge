@@ -9,5 +9,5 @@ router.register(r'', AlphaVantageServiceViewSet, basename='api')
 urlpatterns = [
     path('register', SignUpView.as_view()),
     path('', IndexView.as_view()),
-    path('api', include(router.urls)),
+    path('api/', include(router.urls)),
 ]
