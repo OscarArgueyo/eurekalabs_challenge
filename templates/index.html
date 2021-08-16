@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load markdownify %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eureka Labs Challenge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<div id="preview-wrapper">
+<div id="output" class="content markdown-body"><h1 id="eureka-labs-challange">Eureka Labs Challange</h1>
+<h2 id="task">Task</h2>
+<h3 id="stock-market-api-service">Stock Market API Service</h3>
+<p>Expose an API endpoint where I can POST my data and sign up for an API key that will be used later.</p>
+<p>Expose an API endpoint where I can hit and get stock market information, as a security mechanism use the API key obtained previously in order to validate user and make sure that no authorized user will consume the service (use request header for that purpose). </p>
+<p>Here are some examples of stock symbols</p>
+<ul>
+<li>Facebook (FB)</li>
+<li>Apple (AAPL)</li>
+<li>Microsoft (MSFT)</li>
+<li>Google (GOOGL)</li>
+<li>Amazon (AMZN)</li>
+</ul>
+<p>The system will make use of a web service called Alpha Vantage, this will provide stock market information.</p>
+<p>Information that will be retrieved in the response of the service as json format will contain:</p>
+<ul>
+<li>Open price</li>
+<li>Higher price</li>
+<li>Lower price</li>
+<li>Variation between last 2 closing price values.</li>
+</ul>
+<p><strong>Alpha Vantage API</strong></p>
+<pre><code>https://www.alphavantage.co/documentation/
+API Key: X86NOH6II01P7R24</code></pre>
+<p>API call sample to get stock prices from Facebook:</p>
+<p><code>https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&amp;symbol=FB&amp;outputsize=compact&amp;apikey=X86NOH6II01P7R24</code></p>
+<p><strong>Considerations:</strong></p>
+<ul>
+<li>API URL structure is up to you.</li>
+<li>Initial data for sign up: name, last name, email.</li>
+<li>Validation rules for signup data are up to you.</li>
+<li>Json structure is up to you.</li>
+<li>It will be a big plus if you deploy the services somewhere in the cloud (heroku, gcloud, aws, azure, etc). It's ok if you just do it locally.</li>
+<li>Use github (or other git repo).</li>
+<li>Programming language: Python.</li>
+<li>BONUS: If you can implement API throttling, that's a big one. Throttling rules are up to you (1 API call per second allowed or 10 API calls per minute, etc).</li>
+<li>Log every API call received, log format is up to you.</li>
+<li>Place a README.md file with instructions in the github repo so test can be performed and checked.</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>API built with Django and DRF, exposed and deployed in this <a href="https://eurekalabs-challenge.herokuapp.com/">Heroku Site</a>.</p>
+<h3 id="how-to-use-it">How to use it?</h3>
+<ol>
+<li>Please access this <a href="https://eurekalabs-challenge.herokuapp.com/register/">Signup URL</a> to register as a valid user. </li>
+<li>Provide all the fields in the form to create a user. If the data are valid after confirming the form the following message will appear: <blockquote>
+<p>User Created Successfully. Login for get auth token and make requests</p>
+</blockquote>
+</li>
+<li>Enter the following <a href="https://eurekalabs-challenge.herokuapp.com/api/token/">link</a> to authenticate and get the valid token (JWT) to use the application.</li>
+<li>If the data is correct the application will return two tokens: an access token and a refresh token. <ol>
+<li>You will have to use the access token and include it in the request headers as a Bearer Token. As follows<blockquote>
+<p>'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9....'</p>
+</blockquote>
+</li>
+<li>To learn more about JWT and its uses, please access the following <a href="https://jwt.io/">link</a></li>
+</ol>
+</li>
+<li>To use the api, you must access the following (<a href="https://eurekalabs-challenge.herokuapp.com/api/%5BSYMBOL%5D?%5BQUERY_STRINGS_PARAMS%5D">https://eurekalabs-challenge.herokuapp.com/api/[SYMBOL]?[QUERY_STRINGS_PARAMS]</a>). For instance, the following URL:<blockquote>
+<p><a href="https://eurekalabs-challenge.herokuapp.com/api/FB?function=TIME_SERIES_INTRADAY&amp;interval=30min">https://eurekalabs-challenge.herokuapp.com/api/FB?function=TIME_SERIES_INTRADAY&amp;interval=30min</a></p>
+</blockquote>
+</li>
+</ol>
+<p>Where Symbol is the one corresponding to the name of the equity of your choice.
+For the use of other parameters please see Alpha Vantage <a href="https://www.alphavantage.co/documentation/">API Documentation</a></p>
+<p>Thanks</p>
+</div>
+        </div>
+</body>
+</html>
