@@ -7,7 +7,8 @@ router = routers.DefaultRouter()
 router.register(r'', AlphaVantageServiceViewSet, basename='api')
 
 urlpatterns = [
-    path('register', SignUpView.as_view()),
-    path('', IndexView.as_view()),
+    path('register/', SignUpView.as_view()),
     path('api/', include(router.urls)),
+    path('', IndexView.as_view()),
+
 ]

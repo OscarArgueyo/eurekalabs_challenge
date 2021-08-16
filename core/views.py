@@ -22,8 +22,9 @@ class SignUpView(generics.GenericAPIView):
         })
 
 
-class AlphaVantageServiceViewSet(AlphaVantageServiceMixinsView, viewsets.GenericViewSet,
-                                 viewsets.mixins.RetrieveModelMixin):
+class AlphaVantageServiceViewSet(viewsets.GenericViewSet,
+                                 viewsets.mixins.RetrieveModelMixin,
+                                 AlphaVantageServiceMixinsView):
     permission_classes = (IsAuthenticated,)
 
     lookup_field = 'symbol'
